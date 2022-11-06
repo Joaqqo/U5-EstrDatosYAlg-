@@ -16,11 +16,18 @@ class TablaHash:
         self.__datos = np.full(self.__claves,None)
 
 
-    def Insertar(self, clave):
+    def InsertarMALOAAA(self, clave):
         posInicial= self.PosInicial(clave) #Traemos la posición inicial de donde se va a insertar
         posInsercion= self.PosInsercion(posInicial, clave) #Para traer la posición donde se va a insertar
         return posInsercion
 
+    
+    def Insertar(self, clave):
+        pos=self.PosInicial(clave)
+        if self.__datos[pos] == None:
+            self.__datos[pos]=ListaE()
+        self.__datos[pos].Insertar(clave, 0)
+        
     def BuscaClave(self, posicion):
         listaClaves=None
         if posicion >=0 and posicion < self.__claves:
@@ -51,11 +58,7 @@ class TablaHash:
                 num += 1
         return num
 
-    def PosInsercion(self, pos, clave): # Retorna la posición donde debe ir el elemento, con inserción por encadenamiento
-        if self.__datos[pos] == None:
-            self.__datos[pos] = ListaE()
-        self.__datos[pos].Insertar(clave, 0)
-        return pos
+
 
 
     def PosInicialDos(self, clave):
